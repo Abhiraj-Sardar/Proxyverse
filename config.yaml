@@ -1,0 +1,30 @@
+server:
+  listen: 8080 #Reverse Proxy listen Port
+  worker: 4
+  upstreams:
+    #1st upstream info
+    - id: node1
+      url: http://localhost:8001 
+
+    #2nd upstream info
+    - id: node2
+      url: http://localhost:8002
+
+  #any header value
+  headers:
+    - key: x-forward-for
+      value: '$ip' #any provided value
+
+    - key: Authorization
+      value: 'Bearer xyz'
+
+  #user defined rules
+  rules:
+    - path: /
+      upstreams: #if any user goes to path / then it will invoke upstream node1 or node2
+        - node1 
+        - node2
+    
+    - path: /admin
+      upstreams: #if any user goes to path /admin then it will invoke upstream node1 or node2
+        - node2

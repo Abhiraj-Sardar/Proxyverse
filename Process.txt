@@ -1,0 +1,16 @@
+downloaded dependencies:
+ - npm init
+ - npm i typesript -D
+ - npm i @types/node -D
+ - npx tsc --init  //to install tsconfig.json file
+ - npm i tsc-watch -D
+ - npm i yaml
+ - npm i zod //for data validation
+ - npm i commander
+ 
+in tsconfig.json file, we uncommented rootDir and outDir, and set "outDir": "./dist" and "rootDir": "./src",
+
+config.yaml file is created to take user configurations
+
+we created config.ts in src folder
+we created config-schema.ts in src folder for using zod for Data validation of config.yaml
